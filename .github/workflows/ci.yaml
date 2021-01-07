@@ -28,9 +28,10 @@ jobs:                                                                          #
                                                                                #
         docker run -d -p 8080:8080                                             \
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
-          --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
           --volume                                                             \
-            /run/configs/etc/nginx/conf.d/nlb.conf:/etc/nginx/conf.d/x.conf:ro \
+            /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro         \
+          --volume                                                             \
+            /run/secrets/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro \
           --name test $GITHUB_REPOSITORY:$release-testing                      ;
                                                                                #
         while true                                                             ;
