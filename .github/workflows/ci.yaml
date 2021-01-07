@@ -176,7 +176,7 @@ jobs:                                                                          #
             sleep 10                                                           ;
             kubectl logs deploy/$project                                       \
             |                                                                  \
-            grep "start worker processes"                                      \
+            grep "Configuration complete; ready for start up"                  \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
