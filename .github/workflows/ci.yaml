@@ -49,7 +49,7 @@ jobs:                                                                          #
             docker logs test                                                   \
               2>& 1                                                            \
             |                                                                  \
-            grep "start worker processes"                                      \
+            grep "Configuration complete; ready for start up"                  \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
@@ -96,7 +96,7 @@ jobs:                                                                          #
             docker service logs ${project}_${project}                          \
               2>& 1                                                            \
             |                                                                  \
-            grep "start worker processes"                                      \
+            grep "Configuration complete; ready for start up"                  \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
