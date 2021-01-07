@@ -73,6 +73,7 @@ jobs:                                                                          #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
                                                                                #
         compose=etc/$mode/$project.yaml                                        ;
+        sed -i /image:.*$project/s/$release/$release-testing/ $compose         ;
                                                                                #
         docker swarm init                                                      ;
         sed -i /node.role/s/worker/manager/ $compose                           ;
@@ -120,6 +121,7 @@ jobs:                                                                          #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
                                                                                #
         compose=etc/$mode/$project.yaml                                        ;
+        sed -i /image:.*$project/s/$release/$release-testing/ $compose         ;
                                                                                #
         version="1.18.10-00"                                                   ;
         curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg          \
@@ -168,11 +170,6 @@ jobs:                                                                          #
           do                                                                   \
             sleep 10                                                           ;
             kubectl get deploy | grep "$project.*\([0-9]\)/\1" && break        ;
-          done                                                                 ;
-        while true                                                             ;
-          do                                                                   \
-            sleep 10                                                           ;
-            kubectl get svc | grep "$project.*NodePort.*80:30000/TCP" && break ;
           done                                                                 ;
         while true                                                             ;
           do                                                                   \
