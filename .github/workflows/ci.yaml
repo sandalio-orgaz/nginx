@@ -24,7 +24,7 @@ jobs:                                                                          #
                                                                                #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
                                                                                #
-        sudo cp -rv run/* /run                                                 \
+        sudo cp -rv run/* /run                                                 ;
                                                                                #
         docker run -d -p 8080:8080                                             \
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
@@ -76,7 +76,7 @@ jobs:                                                                          #
         docker swarm init                                                      ;
         sed -i /node.role/s/worker/manager/ $compose                           ;
                                                                                #
-        sudo cp -rv run/* /run                                                 \
+        sudo cp -rv run/* /run                                                 ;
                                                                                #
         docker stack deploy -c $compose $project                               ;
                                                                                #
@@ -147,7 +147,7 @@ jobs:                                                                          #
                                                                                #
         sed -i /imagePullPolicy/s/Always/Never/ $compose                       ;
                                                                                #
-        sudo cp -rv run/* /run                                                 \
+        sudo cp -rv run/* /run                                                 ;
         for config in $( find /run/configs -type f )                           ;
           do                                                                   \
             file=$( basename $config )                                         ;
