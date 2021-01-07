@@ -21,7 +21,7 @@ jobs:                                                                          #
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
         echo $branch | grep ^v[0-9]                                            \
-          && release=$( echo $branch | sed 's/^v([0-9])/\1/' )                 \
+          && release=$( echo $branch | sed 's/^v\([0-9]\)/\1/' )               \
           || release=latest                                                    ;
                                                                                #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
@@ -71,7 +71,7 @@ jobs:                                                                          #
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
         echo $branch | grep ^v[0-9]                                            \
-          && release=$( echo $branch | sed 's/^v([0-9])/\1/' )                 \
+          && release=$( echo $branch | sed 's/^v\([0-9]\)/\1/' )               \
           || release=latest                                                    ;
                                                                                #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
@@ -121,7 +121,7 @@ jobs:                                                                          #
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
         echo $branch | grep ^v[0-9]                                            \
-          && release=$( echo $branch | sed 's/^v([0-9])/\1/' )                 \
+          && release=$( echo $branch | sed 's/^v\([0-9]\)/\1/' )               \
           || release=latest                                                    ;
                                                                                #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
