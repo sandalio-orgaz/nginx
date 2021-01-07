@@ -180,6 +180,11 @@ jobs:                                                                          #
         while true                                                             ;
           do                                                                   \
             sleep 10                                                           ;
+            kubectl get svc | grep "$project.*ClusterIP.*80/TCP" && break      ;
+          done                                                                 ;
+        while true                                                             ;
+          do                                                                   \
+            sleep 10                                                           ;
             kubectl logs deploy/$project                                       \
             |                                                                  \
             grep "Configuration complete; ready for start up"                  \
