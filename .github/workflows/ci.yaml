@@ -143,7 +143,7 @@ jobs:                                                                          #
         compose=etc/$mode/$project.yaml                                        ;
         sed -i /image:.*$project/s/$release/$release-testing/ $compose         ;
                                                                                #
-        uuid=$( uuid )                                                         ;
+        uuid=$( md5sum $compose )                                              ;
         git clone --single-branch -b main                                      \
           https://github.com/academiaonline/kubernetes $uuid                   ;
         path=$uuid/bin/standalone/ubuntu18/install.sh                          ;
