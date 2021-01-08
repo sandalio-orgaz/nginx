@@ -28,8 +28,13 @@ jobs:                                                                          #
                                                                                #
         sudo cp -rv run/* /run                                                 ;
                                                                                #
-        docker run -d -p 8080:8080                                             \
+        docker run -d -p 80:8080                                               \
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
+          --health-cmd "curl localhost:8080 | grep -q 'Welcome to nginx!'"     \
+          --health-interval=10s                                                \
+          --health-retries=3                                                   \
+          --health-start-period=30s                                            \
+          --health-timeout=1s                                                  \
           --volume                                                             \
             /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro         \
           --volume                                                             \
@@ -42,6 +47,15 @@ jobs:                                                                          #
             docker exec test ps                                                \
             |                                                                  \
             grep "1.*nginx: master process"                                    \
+            &&                                                                 \
+            break                                                              ;
+          done                                                                 ;
+        while true                                                             ;
+          do                                                                   \
+            sleep 10                                                           ;
+            curl localhost                                                     \
+            |                                                                  \
+            grep "Welcome to nginx!"                                           \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
@@ -92,6 +106,15 @@ jobs:                                                                          #
             docker service ls                                                  \
             |                                                                  \
             grep "$project.*replicated.*\([0-9]\)/\1.*8080"                    \
+            &&                                                                 \
+            break                                                              ;
+          done                                                                 ;
+        while true                                                             ;
+          do                                                                   \
+            sleep 10                                                           ;
+            curl localhost                                                     \
+            |                                                                  \
+            grep "Welcome to nginx!"                                           \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
