@@ -37,7 +37,7 @@ services:
       timeout: 1s
     image: academiaonline/nginx:latest
     ports:
-    - 80:8080
+    - "80:8080"
     secrets:
     - mode: 0400
       source: default.conf
