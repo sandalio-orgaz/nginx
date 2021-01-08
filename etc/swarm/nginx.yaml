@@ -33,7 +33,7 @@ services:
       interval: 10s
       retries: 3
       start_period: 30s
-      test: curl localhost:8080 | grep "Welcome to nginx!" -q
+      test: curl -f localhost:8080
       timeout: 1s
     image: academiaonline/nginx:latest
     ports:
