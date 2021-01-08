@@ -5,11 +5,13 @@
 ARG									\
 	digest="@sha256:da3716611fb965f3fda1f3281882baeb2760ca8bb7317f1d22ed45e75570827b"
 ARG									\
-	tag="nginx:1.18.0-alpine"
+	image=nginx
+ARG									\
+	tag="1.18.0-alpine"
 #########################################################################
 FROM									\
-	nginx:${tag}${digest}						\
-		AS nginx
+	${image}:${tag}${digest}					\
+		AS ${image}
 #########################################################################
 RUN									\
 	for package in							\
