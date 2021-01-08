@@ -3,9 +3,9 @@
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
 ARG									\
-	digest="@sha256:a3c6118edc80de4a5aaf2711b7742c25d4d2da54325bae465205cb386afa79ee"
+	digest="@sha256:da3716611fb965f3fda1f3281882baeb2760ca8bb7317f1d22ed45e75570827b"
 ARG									\
-	tag="1.19.3-alpine"
+	tag="nginx:1.18.0-alpine"
 #########################################################################
 FROM									\
 	nginx:${tag}${digest}						\
@@ -36,10 +36,6 @@ RUN									\
 	&& 								\
 	rm 	-f 							\
 		-r 	/etc/nginx/conf.d/*				\
-#	&& 								\
-#	ln	-s							\
-#			/run/nginx/etc/nginx/nginx.conf			\
-#			/etc/nginx/nginx.conf				\
 									;
 #########################################################################
 VOLUME									\
