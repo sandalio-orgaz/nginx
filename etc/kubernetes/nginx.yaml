@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: academiaonline/nginx:latest
+        image: academiaonline/nginx:8.1
         imagePullPolicy: Always
         livenessProbe:
           tcpSocket:
