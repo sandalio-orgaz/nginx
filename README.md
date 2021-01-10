@@ -1,4 +1,4 @@
-![CI](https://github.com/academiaonline/nginx/workflows/CI/badge.svg?branch=docker)
+![CI](https://github.com/academiaonline/nginx/workflows/CI/badge.svg?branch=v8.2)
 
 # Usage
 
