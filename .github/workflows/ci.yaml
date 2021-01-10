@@ -6,7 +6,7 @@ name: CI                                                                       #
 on:                                                                            #
   push:                                                                        #
     branches:                                                                  #
-    - docker                                                                   #
+    - v8.2                                                                     #
 jobs:                                                                          #
   docker:                                                                      #
     runs-on: ubuntu-18.04                                                      #
@@ -144,7 +144,7 @@ jobs:                                                                          #
         sed -i /image:.*$project/s/$release/$release-testing/ $compose         ;
                                                                                #
         uuid=$( md5sum $compose | cut -d' ' -f1 )                              ;
-        git clone --single-branch -b v1.0                                      \
+        git clone --single-branch -b v1.1                                      \
           https://github.com/academiaonline/kubernetes $uuid                   ;
         path=$uuid/bin/standalone/ubuntu18/install.sh                          ;
         source $path                                                           ;
