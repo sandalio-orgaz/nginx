@@ -90,7 +90,7 @@ jobs:                                                                          #
                                                                                #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
                                                                                #
-        compose=etc/$mode/$project.yaml                                        ;
+        compose=etc/$mode/manifests/$project.yaml                              ;
         sed -i /image:.*$project/s/$release/$release-testing/ $compose         ;
                                                                                #
         docker swarm init                                                      ;
@@ -140,10 +140,10 @@ jobs:                                                                          #
                                                                                #
         docker build -t $GITHUB_REPOSITORY:$release-testing --no-cache .       ;
                                                                                #
-        compose=etc/$mode/$project.yaml                                        ;
+        compose=etc/$mode/manifests/$project.yaml                              ;
         sed -i /image:.*$project/s/$release/$release-testing/ $compose         ;
                                                                                #
-        uuid=$( md5sum $compose | cut -d' ' -f1 )                              ;
+        uuid=$( md5sum $compose | cut -d" " -f1 )                              ;
         git clone --single-branch -b v1.0                                      \
           https://github.com/academiaonline/kubernetes $uuid                   ;
         path=$uuid/bin/standalone/ubuntu18/install.sh                          ;
