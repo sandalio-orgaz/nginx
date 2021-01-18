@@ -152,6 +152,8 @@ jobs:                                                                          #
         source $path                                                           ;
         master=$( kubectl get node | grep master | awk '{ print $1 }' )        ;
         kubectl taint node $master node-role.kubernetes.io/master:NoSchedule-  ;
+        source $path                                                           ;
+        path=$uuid/bin/configs-secrets-gen.sh                                  ;
         rm -rf $uuid                                                           ;
                                                                                #
         sed -i /imagePullPolicy/s/Always/Never/ $compose                       ;
