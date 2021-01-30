@@ -3,6 +3,10 @@
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
 ARG									\
+	default_conf="/etc/nginx/conf.d/default.conf"
+ARG									\
+	nginx_conf="/etc/nginx/nginx.conf"
+ARG									\
 	digest="@sha256:da3716611fb965f3fda1f3281882baeb2760ca8bb7317f1d22ed45e75570827b"
 ARG									\
 	image="nginx"
@@ -41,8 +45,8 @@ RUN									\
 									;
 #########################################################################
 VOLUME									\
-	/etc/nginx/conf.d/default.conf					\
-	/etc/nginx/nginx.conf						\
+	${default_conf}							\
+	${nginx_conf}							\
 	/var/cache/nginx						\
 	/var/run							\
 #########################################################################
