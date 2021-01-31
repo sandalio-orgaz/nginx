@@ -13,11 +13,6 @@ FROM									\
 	${image}:${tag}${digest}					\
 		AS production
 #########################################################################
-ARG									\
-	default_conf="/etc/nginx/conf.d/default.conf"
-ARG									\
-	nginx_conf="/etc/nginx/nginx.conf"
-#########################################################################
 RUN									\
 	for package in							\
 		$(							\
