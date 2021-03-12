@@ -3,7 +3,7 @@
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
 ARG									\
-	digest="@sha256:d7038eae37cfa36cd8e286f6d6daf0df7a445a2da327517b3cde4ba1833adc0c"
+	digest="@sha256:0c56c40f232f41c1b8341c3cc055c8b528cb6decefd7f7c8506e2d30bb9678b6"
 ARG									\
 	image="nginx"
 ARG									\
