@@ -15,15 +15,34 @@ spec:
       containers:
         - name: nginx-container
           args:
-            - nginx-server
+            - nginx
+            - -g
+            - daemon
           command:
-            - docker-entrypoint.sh
+            - /docker-entrypoint.sh
           image: index.docker.io/library/nginx:1.21.0-alpine@sha256:2e76f4d4e21bae1d012267cff67e032bb006a2cff5c00afa5d4ad011c1855128
           volumeMounts:
-            - mountPath: /data/
-              name: nginx-volume
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-conf-volume
+              readOnly: true
+              subPath: nginx.conf
+            - mountPath: /etc/nginx/conf.d/default.conf
+              name: nginx-default-volume
+              readOnly: true
+              subPath: default.conf
+            - mountPath: /var/cache/nginx/
+              name: nginx-cache-volume
               readOnly: false
-          workingDir: /data/
+            - mountPath: /var/run/
+              name: nginx-run-volume
+              readOnly: false
+          workingDir: /
       volumes:
-        - name: nginx-volume
+        - name: nginx-conf-volume
+          emptyDir: {}
+        - name: nginx-default-volume
+          emptyDir: {}
+        - name: nginx-cache-volume
+          emptyDir: {}
+        - name: nginx-run-volume
           emptyDir: {}
