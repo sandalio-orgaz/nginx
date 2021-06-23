@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-container
+          args:
+            - nginx-server
+          command:
+            - docker-entrypoint.sh
+          image: index.docker.io/library/nginx:1.21.0-alpine@sha256:2e76f4d4e21bae1d012267cff67e032bb006a2cff5c00afa5d4ad011c1855128
+          volumeMounts:
+            - mountPath: /data/
+              name: nginx-volume
+              readOnly: false
+          workingDir: /data/
+      volumes:
+        - name: nginx-volume
+          emptyDir: {}
